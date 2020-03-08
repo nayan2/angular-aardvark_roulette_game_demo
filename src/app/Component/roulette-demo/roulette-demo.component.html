@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4>Stats (last 200)</h4>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>&nbsp;</td>
+          <th colspan="5" class="cold">Cold</th>
+          <th 
+            [attr.colspan]="gameStats.length > 0 ? gameStats.length - 10 : 0" 
+            class="neutral"
+          >
+            Neutral
+          </th>
+          <th colspan="5" class="hot">Hot</th>
+        </tr>
+        <tr>
+          <th>Slot</th>
+          <td 
+            *ngFor="let stat of gameStats;let i = index" 
+            class="btn-{{gameConfiguration.colors[i]}}"
+          >
+            {{gameConfiguration.results[i]}}
+          </td>
+        </tr>
+        <tr>
+          <th>Hits</th>
+          <td 
+            *ngFor="let stat of gameStats;let i = index" 
+            class="{{i < 5 ? 'cold' : (i >= (gameStats.length - 5) ? 'hot' : 'neutral')}}"
+          >
+            {{stat.count}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h4>Game board</h4>
+        <div>
+            <button 
+              *ngFor="let slot of gameConfiguration.results; let i = index"
+              [@fadeInOut]="gameResult == gameConfiguration.results[i] ? animateState : null"
+              type="button"
+              class="btn-temp col-xs-1 btn btn-{{gameConfiguration.colors[i]}}"
+            >
+              {{gameConfiguration.results[i]}}
+            </button>
+        </div>
+
+        <h4>Events</h4>
+        <ul class="list-group col-md-12">
+          <ng-container *ngFor="let event of events" >
+            <li *ngIf="!event.isTemp" class="list-group-item">{{event.message}}</li>
+          </ng-container>
+        </ul>
+    </div>
+    <div class="col">
+        <h4>Log</h4>
+        <pre>
+{{log}}
+        </pre>
+    </div>
+</div>

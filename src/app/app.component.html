@@ -1,0 +1,16 @@
+<app-app-loader></app-app-loader>
+<div class="container mt-3">
+  <h1>Aardvark Roulette game API demo</h1>
+  <form #formDirective="ngForm" [formGroup]="RouletteForm">
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <h5>API base URL</h5>
+        <mat-form-field style="width: 100%;" class="example-full-width" appearance="outline">
+          <mat-label>Base URL </mat-label>
+          <input readonly matInput formControlName="url">
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <router-outlet></router-outlet>
+</div>
